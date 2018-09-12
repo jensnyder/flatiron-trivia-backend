@@ -9,15 +9,18 @@ require 'json'
 require 'rest-client'
 require 'pry'
 
+Question.destroy_all
+Answer.destroy_all
+
 def get_questions
-    questions = JSON.parse(RestClient.get('https://opentdb.com/api.php?amount=10&category=9&difficulty=hard&type=multiple'))
-    seed_data = questions['results'].map do |result| 
+    questions = JSON.parse(RestClient.get('https://opentdb.com/api.php?amount=40&category=9&difficulty=hard&type=multiple'))
+    seed_data = questions['results'].map do |result|
         [
-            result['question'], 
-        result['difficulty'], 
-        result['correct_answer'], 
+            result['question'],
+        result['difficulty'],
+        result['correct_answer'],
         result['incorrect_answers']
-        ] 
+        ]
     end
     seed_data.each do |seed|
         question = Question.create(content: seed[0], difficulty: seed[1])
