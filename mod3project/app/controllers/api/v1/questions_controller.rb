@@ -25,7 +25,7 @@ class Api::V1::QuestionsController < ApplicationController
     private 
 
     def question_params 
-        params.require(:question).permit(:content, :difficulty)
+        params.require(:question).permit(:content, :difficulty, :category_id)
     end
 
     def get_question 
