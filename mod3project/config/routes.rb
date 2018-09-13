@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :questions, only: [:index, :show, :create, :update, :destroy]
       resources :answers, only: [:index, :create, :update, :destroy]
       resources :categories, only: [:index]
+      get 'categories/:name', to: 'categories#show'
     end
   end
 end
